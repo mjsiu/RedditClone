@@ -1,0 +1,8 @@
+<h1> Reddit: <%=@sub.title%> </h1>
+
+<%= @sub.description %>
+
+<%= button_to "Create a new post", new_sub_post_url(@sub), method: :get %>
+<ul>
+<%= render partial:'post', collection: @sub.posts, as: :post %>
+</ul>

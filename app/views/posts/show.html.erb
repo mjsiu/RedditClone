@@ -1,0 +1,13 @@
+<h1><%=@post.title%></h1>
+<p>
+  Author: <%= @author %>
+</p>
+<% if author_or_moderator(@post) %>
+<%= button_to "Delete Post", post_url(@post), method: :delete %>
+<% end %>
+<p>
+  <%= link_to "#{@post.url}", @post.url %>
+</p>
+<pre>
+  <%= @post.content %>
+</pre>
