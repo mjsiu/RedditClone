@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @cross_subs_id = Sub.all.map(&:id)
   end
 
   def create
@@ -16,11 +17,13 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = post.find(params[:id])
+    @post = Post.find(params[:id])
+    @cross_subs_id = @post.post_sub_sub_ids
   end
 
   def update
-    @post = post.find(params[:id])
+    @post = Post.find(params[:id])
+    @cross_subs_id = @post.post_sub_sub_ids
 
     if @post.update_attributes(post_params)
       redirect_to post_url(@post)
@@ -42,6 +45,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:sub_id, :author_id, :title, :url, :content)
+    params.require(:post).permit(:sub_id, :author_id, :title, :url, :content, post_sub_sub_ids: [] )
   end
 end

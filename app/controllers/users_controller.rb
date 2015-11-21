@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      fail
       login_user(@user)
       redirect_to user_url(@user)
     else
@@ -18,14 +17,6 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
-  # def edit
-  #   @user = User.find(params[:id])
-  # end
-  #
-  # def update
-  #   @user = User.find(params[:id])
-  # end
 
   def show
     @user = current_user

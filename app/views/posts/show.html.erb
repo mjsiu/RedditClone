@@ -3,6 +3,7 @@
   Author: <%= @author %>
 </p>
 <% if author_or_moderator(@post) %>
+<%= button_to "Edit Post", edit_post_url(@post), method: :get %>
 <%= button_to "Delete Post", post_url(@post), method: :delete %>
 <% end %>
 <p>

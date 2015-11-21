@@ -1,8 +1,7 @@
 class Post < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: true
-  validates :sub_id, :author_id, presence: true
-
+  validates :sub, :author_id, presence: true
 
   belongs_to :sub
   belongs_to :author,
@@ -14,6 +13,14 @@ class Post < ActiveRecord::Base
     through: :sub,
     source: :moderator
 
+  has_many :post_subs,
+    dependent: :destroy,
+    inverse_of: :post
+
+
+  has_many :post_sub_subs,
+    through: :post_subs,
+    source: :sub
 
 
 end
